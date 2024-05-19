@@ -38,7 +38,7 @@ Clone this repository and open it as regular Unity project. It comes with exampl
 
 Alternatively you can add this repository to your project as a **Unity Package**. Add it by this git URL to your Unity Package Manager:
 ```
-https://github.com/Macoron/whisper.unity.git?path=/Packages/com.whisper.unity
+https://github.com/DevJamaly/whisper.unity.git?path=/Packages/com.whisper.unity
 ```
 ### CUDA Support
 > Unity project compiled with enabled CUDA expects your end-users to have Nvidia GPU and CUDA libraries. Trying to run build without it will result error.
