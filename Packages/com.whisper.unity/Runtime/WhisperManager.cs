@@ -95,6 +95,12 @@ namespace Whisper
         /// </summary>
         public event OnProgressDelegate OnProgress;
 
+         /// <summary>
+        /// Raised when whisper has started transcribing the audio.
+        /// Raised only once per audio sample.
+        /// </summary>
+        public event Action OnInferenceStarted;
+
         private WhisperWrapper _whisper;
         private WhisperParams _params;
         private readonly MainThreadDispatcher _dispatcher = new MainThreadDispatcher();
@@ -187,6 +193,7 @@ namespace Whisper
                 
                 _whisper.OnNewSegment += OnNewSegmentHandler;
                 _whisper.OnProgress += OnProgressHandler;
+                RaiseOnInferenceStarted();
             }
             catch (Exception e)
             {
@@ -331,6 +338,14 @@ namespace Whisper
             _dispatcher.Execute(() =>
             {
                 OnProgress?.Invoke(progress);
+            });
+        }
+
+        private void RaiseOnInferenceStarted()
+        {
+            _dispatcher.Execute(() =>
+            {
+                OnInferenceStarted?.Invoke();
             });
         }
     }
